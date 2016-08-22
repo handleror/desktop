@@ -19,6 +19,7 @@ Release date: TBD
 - Add access to settings through tray menu
 - Removed unclear desktop notifications when failed to load tabs.
 - Reload automatically the failed tab when the computer becomes online.
+- Added simple validation for Name and URL in the settings page.
 
 #### Windows
 - Added an option to toogle the red dot icon for unread messages (default is on).

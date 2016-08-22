@@ -9,17 +9,9 @@ const settings = require('../common/settings');
 
 const React = require('react');
 const ReactDOM = require('react-dom');
-const ReactBootstrap = require('react-bootstrap');
+const {Grid, Row, Col, Input, Button, ListGroup, ListGroupItem, Glyphicon, HelpBlock} = require('react-bootstrap');
 var AutoLaunch = require('auto-launch');
 
-const Grid = ReactBootstrap.Grid;
-const Row = ReactBootstrap.Row;
-const Col = ReactBootstrap.Col;
-const Input = ReactBootstrap.Input;
-const Button = ReactBootstrap.Button;
-const ListGroup = ReactBootstrap.ListGroup;
-const ListGroupItem = ReactBootstrap.ListGroupItem;
-const Glyphicon = ReactBootstrap.Glyphicon;
 
 var appLauncher = new AutoLaunch({
   name: 'Mattermost'
@@ -473,6 +465,23 @@ var TeamListItemNew = React.createClass({
             { btnAddText }
           </Button>
         </form>
+        { (() => {
+            var message = null;
+            if (this.state.name.trim() === '') {
+              message = 'Name is required.';
+            } else if (this.state.url.trim() === '') {
+              message = 'URL is required.';
+            } else if (!(/^https?:\/\/.*/).test(this.state.url.trim())) {
+              message = 'URL should start with http:// or https://.';
+            }
+          
+            if (message) {
+              return (<HelpBlock style={ { color: '#777777' } }>
+                        { message }
+                      </HelpBlock>);
+            }
+            return null;
+          })() }
       </ListGroupItem>
       );
   }
